@@ -113,11 +113,11 @@ class Program
 
         // 3. Đăng nhập với mật khẩu
         Console.WriteLine("\n[Test 3] Đăng nhập fail mật khẩu:");
-        authService.Login("admin", "failpass");
+        authService.Login("admin", "Wrongpass1!");
 
         // 4. Đăng nhập thành công với mật khẩu đúng
         Console.WriteLine("\n[Test 4] Đăng nhập thành công với tài khoản hợp lệ:");
-        authService.Login("admin", "admin1234");
+        authService.Login("admin", "Admin1234!");
 
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- HOÀN TẤT TẤT CẢ CÁC BÀI KIỂM THỬ ---");

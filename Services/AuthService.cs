@@ -3,7 +3,7 @@ namespace prj1.Services;
 public class AuthService
 {
     private const string ValidUsername = "admin";
-    private const string ValidPassword = "admin1234";
+    private const string ValidPassword = "Admin1234!";
     private const int MinimumPasswordLength = 6;
     private const int MaximumPasswordLength = 32;
 
@@ -17,9 +17,13 @@ public class AuthService
 
         if (string.IsNullOrEmpty(password) ||
             password.Length < MinimumPasswordLength ||
-            password.Length > MaximumPasswordLength)
+            password.Length > MaximumPasswordLength ||
+            !password.Any(char.IsUpper) ||
+            !password.Any(char.IsLower) ||
+            !password.Any(char.IsDigit) ||
+            password.All(char.IsLetterOrDigit))
         {
-            Console.WriteLine("[Lỗi] Mật khẩu phải có từ 6 đến 32 ký tự.");
+            Console.WriteLine("[Lỗi] Mật khẩu phải có từ 6 đến 32 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
             return false;
         }
 
