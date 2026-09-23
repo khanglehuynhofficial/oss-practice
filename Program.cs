@@ -28,7 +28,6 @@ class Program
 
         // 3. Hiển thị toàn bộ danh sách sinh viên đang quản lý
         Console.WriteLine("\n--- Danh sách sinh viên hiện tại trong Manager ---");
-        // ĐÃ SỬA: Gọi thẳng hàm tự in danh sách của bạn, không dùng vòng lặp foreach ở đây nữa
         manager.DisplayAllStudents(); 
 
 
@@ -45,7 +44,7 @@ class Program
         }
 
 
-        // --- PHẦN 3: KIỂM THỬ CHỨC NĂNG XÓA SINH VIÊN (Issue #10) ---
+        // --- PHẦN 3: KIỂM THỬ CHỨC NĂNG XÓA SINH VIÊN ---
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- PHẦN 3: KIỂM THỬ CHỨC NĂNG XÓA SINH VIÊN ---");
         
@@ -66,7 +65,7 @@ class Program
         manager.DeleteStudent(-5);
 
 
-        // --- PHẦN 4: KIỂM THỬ KIỂM TRA DỮ LIỆU ĐẦU VÀO (Issue #5 / #4) ---
+        // --- PHẦN 4: KIỂM THỬ KIỂM TRA DỮ LIỆU ĐẦU VÀO ---
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- PHẦN 4: KIỂM THỬ KIỂM TRA DỮ LIỆU ĐẦU VÀO ---");
 
@@ -86,7 +85,7 @@ class Program
         Console.WriteLine("\n[Test 4] Thêm sinh viên với tuổi không hợp lệ (Tuổi = 10):");
         manager.AddStudent(5, "Le Thi Be", 10);
 
-        // 5. Thử bắt ngoại lệ khi tạo trực tiếp Student với dữ liệu sai
+        // 5. Thử bắt ngoại lệ khi tạo trực tiếp Student với dữ liệu
         Console.WriteLine("\n[Test 5] Bắt ngoại lệ Constructor Student khi khởi tạo dữ liệu:");
         try
         {
@@ -98,12 +97,12 @@ class Program
         }
 
 
-        // --- PHẦN 5: KIỂM THỬ ĐĂNG NHẬP & XỬ LÝ LỖI MẬT KHẨU VƯỢT GIỚI HẠN KÝ TỰ (Issue #7) ---
+        // --- PHẦN 5: KIỂM THỬ ĐĂNG NHẬP & GIỚI HẠN MẬT KHẨU ---
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- PHẦN 5: KIỂM THỬ ĐĂNG NHẬP & GIỚI HẠN MẬT KHẨU ---");
         AuthService authService = new AuthService();
 
-        // 1. Đăng nhập với mật khẩu vượt quá 32 ký tự (Trực tiếp kiểm tra lỗi Issue #7)
+        // 1. Đăng nhập với mật khẩu vượt quá 32 ký tự
         Console.WriteLine("\n[Test 1] Đăng nhập với mật khẩu vượt quá giới hạn (chuỗi 40 ký tự):");
         string longPassword = new string('A', 40);
         authService.Login("admin", longPassword);
@@ -114,11 +113,11 @@ class Program
 
         // 3. Đăng nhập với mật khẩu
         Console.WriteLine("\n[Test 3] Đăng nhập fail mật khẩu:");
-        authService.Login("admin", "failpass");
+        authService.Login("admin", "Wrongpass1!");
 
         // 4. Đăng nhập thành công với mật khẩu đúng
         Console.WriteLine("\n[Test 4] Đăng nhập thành công với tài khoản hợp lệ:");
-        authService.Login("admin", "admin1234");
+        authService.Login("admin", "Admin1234!");
 
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- HOÀN TẤT TẤT CẢ CÁC BÀI KIỂM THỬ ---");
