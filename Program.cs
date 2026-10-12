@@ -1,7 +1,32 @@
 using System;
 using prj1.Model;
 using prj1.Services;
-
+using System.Text.RegularExpressions;
+public class SequelizeQueryGenerator
+{
+    public static string CleanAttribute(string attribute, int sequelizeVersion)
+    {
+        if (string.IsNullOrEmpty(attribute)) return string.Empty;
+        bool hasParentheses = Regex.IsMatch(attribute, @"[\(\)]");
+        if (sequelizeVersion == 6)
+        {
+            if (hasParentheses)
+            {
+                throw new InvalidOperationException(
+                    "SECURITY ALERT: Raw attributes with parentheses are deprecated in Sequelize 6. " +
+                    "Please explicitly opt-in to secure escaping mechanisms to prevent SQL Injection."
+                );
+            }
+            return attribute;
+        }
+        if (sequelizeVersion == 7)
+        {
+            string cleanString = attribute.Replace("\"", "\\\""); 
+            return $"\"{cleanString}\"";
+        }
+        return attribute;
+    }
+}
 class Program
 {
     static void Main(string[] args)
